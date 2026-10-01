@@ -4,6 +4,9 @@ import { createRoom } from '@/lib/store'
 
 export async function POST() {
   if (!(await isAdmin())) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Falta configurar DATABASE_URL en Vercel para guardar las salas.' }, { status: 503 })
+  }
 
   try {
     for (let attempt = 0; attempt < 8; attempt++) {

@@ -29,15 +29,17 @@ function CreateRoom() {
     setPending(true)
     setError(null)
     try {
-      const res = await fetch('/api/admin/rooms', { method: 'POST' })
+      const res = await fetch('/api/admin/rooms', { method: 'POST', signal: AbortSignal.timeout(15_000) })
       const json = await readJson(res)
       if (res.ok && json.code) {
-        router.push(`/admin?room=${json.code}`)
+        window.location.assign(`/admin?room=${json.code}`)
         return
       }
       setError(json.error ?? 'No se pudo crear la sala')
-    } catch {
-      setError('No se pudo crear la sala')
+    } catch (cause) {
+      setError(cause instanceof DOMException && cause.name === 'TimeoutError'
+        ? 'La conexión tardó demasiado. Revisá la base de datos e intentá de nuevo.'
+        : 'No se pudo crear la sala')
     }
     setPending(false)
   }
