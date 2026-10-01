@@ -2,6 +2,7 @@
 
 import type { ActivityId } from '@/lib/activities'
 import { HallucinationGame } from './hallucination-game'
+import { AiDataClassifier } from './ai-data-classifier'
 import { PasswordGame } from './password-game'
 import { PhishingGame } from './phishing-game'
 import { TrafficGame } from './traffic-game'
@@ -19,5 +20,7 @@ export function ActivityRenderer({ activity }: { activity: ActivityId }) {
       return <HallucinationGame />
     case 'traffic':
       return <TrafficGame />
+    case 'ai-data':
+      return <AiDataClassifier />
   }
 }

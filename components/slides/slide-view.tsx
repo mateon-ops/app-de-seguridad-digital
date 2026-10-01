@@ -228,6 +228,13 @@ function SlideBody({ index }: { index: number }) {
       return <GoldenRules />
     case 9:
       return (
+        <div className="grid gap-4 md:grid-cols-2">
+          <Tile icon={Lock} tone="destructive" title="Datos que no compartimos" text="DNI, CBU, claves y domicilio son datos personales. No los pegues en una IA." />
+          <Tile icon={Bot} tone="accent" title="Ideas que sí podemos consultar" text="El nombre del emprendimiento y preguntas generales sobre una idea pueden ayudar a recibir sugerencias." />
+        </div>
+      )
+    case 10:
+      return (
         <div className="flex flex-col items-center gap-6 py-4 text-center">
           <span className="flex size-16 items-center justify-center rounded-2xl border border-accent/40 bg-accent/10 text-accent">
             <Sparkles className="size-8" aria-hidden />

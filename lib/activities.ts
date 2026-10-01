@@ -1,4 +1,4 @@
-export type ActivityId = 'worry' | 'password' | 'phishing' | 'hallucination' | 'traffic'
+export type ActivityId = 'worry' | 'password' | 'phishing' | 'hallucination' | 'traffic' | 'ai-data'
 
 export const ACTIVITY_LABELS: Record<ActivityId, string> = {
   worry: 'Pregunta disparadora',
@@ -6,6 +6,7 @@ export const ACTIVITY_LABELS: Record<ActivityId, string> = {
   phishing: 'Detective de Phishing',
   hallucination: 'Cazador de Alucinaciones',
   traffic: 'Semáforo Financiero',
+  'ai-data': 'Clasificador de datos para IA',
 }
 
 export const WORRY_OPTIONS = [
@@ -115,7 +116,7 @@ export const HALLUCINATION_ERROR_IDS = HALLUCINATION_TOKENS.filter((t) => t.isEr
 
 export type Light = 'green' | 'yellow' | 'red'
 
-export const TRAFFIC_CASES: { id: string; text: string; answer: Light; explanation: string }[] = [
+export const TRAFFIC_CASES: { id: string; text: string; answer: Light; acceptableAnswers?: Light[]; explanation: string }[] = [
   {
     id: 'cbu',
     text: 'Pasar CBU/Alias a un cliente por WhatsApp',
@@ -140,6 +141,28 @@ export const TRAFFIC_CASES: { id: string; text: string; answer: Light; explanati
     answer: 'red',
     explanation: 'Los links de cobro por SMS son una trampa típica para robarte los datos.',
   },
+  {
+    id: 'street-qr',
+    text: 'Escanear código QR de la calle',
+    answer: 'yellow',
+    acceptableAnswers: ['red'],
+    explanation: 'Un QR pegado en la calle puede estar alterado o llevar a un sitio falso. Verificá su origen antes de escanearlo.',
+  },
+  {
+    id: 'customer-qr',
+    text: 'Realizar un código QR y compartirlos con tus clientes',
+    answer: 'green',
+    explanation: 'Un QR creado por tu emprendimiento para que tus clientes te paguen es seguro. Revisá que dirija a tu cuenta.',
+  },
+]
+
+export const AI_DATA_CASES: { id: string; text: string; shareable: boolean }[] = [
+  { id: 'dni', text: 'Número de DNI', shareable: false },
+  { id: 'cbu', text: 'CBU o alias de tu cuenta', shareable: false },
+  { id: 'tax-key', text: 'Clave Fiscal o contraseña', shareable: false },
+  { id: 'address', text: 'Domicilio particular', shareable: false },
+  { id: 'business-name', text: 'Nombre de tu emprendimiento', shareable: true },
+  { id: 'idea-consultation', text: 'Consulta para mejorar una idea', shareable: true },
 ]
 
 export function sanitizeText(value: unknown, max = 120) {
@@ -175,7 +198,7 @@ export function gradeActivity(activity: ActivityId, input: unknown): Graded | nu
         const v = answers[c.id]
         if (v === 'scam' || v === 'safe') {
           clean[c.id] = v
-          if (v === c.answer) correct++
+          if (v === c.answer || c.acceptableAnswers?.includes(v)) correct++
         }
       }
       return { correct, total: PHISHING_CASES.length, payload: { answers: clean } }
@@ -218,6 +241,16 @@ export function gradeActivity(activity: ActivityId, input: unknown): Graded | nu
         }
       }
       return { correct, total: TRAFFIC_CASES.length, payload: { answers: clean } }
+    }
+    case 'ai-data': {
+      const answers = (data.answers ?? {}) as Record<string, unknown>
+      const clean: Record<string, boolean> = {}
+      for (const item of AI_DATA_CASES) {
+        if (typeof answers[item.id] !== 'boolean') return null
+        clean[item.id] = answers[item.id] as boolean
+      }
+      const correct = AI_DATA_CASES.filter((item) => clean[item.id] === item.shareable).length
+      return { correct, total: AI_DATA_CASES.length, payload: { answers: clean } }
     }
     default:
       return null

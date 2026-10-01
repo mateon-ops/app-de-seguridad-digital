@@ -17,7 +17,8 @@ export const SLIDES: Slide[] = [
   { number: 7, short: 'IA crítica', title: 'Uso crítico de la IA', activity: 'hallucination' },
   { number: 8, short: 'Cuentas de dinero', title: 'Cuidados al vincular cuentas de dinero', activity: 'traffic' },
   { number: 9, short: '7 reglas de oro', title: 'Las 7 reglas de oro' },
-  { number: 10, short: 'Cierre', title: 'Cierre y reflexión final' },
+  { number: 10, short: 'Datos e IA', title: '¿Qué datos compartir con la IA?', activity: 'ai-data' },
+  { number: 11, short: 'Cierre', title: 'Cierre y reflexión final' },
 ]
 
 export const GOLDEN_RULES = [

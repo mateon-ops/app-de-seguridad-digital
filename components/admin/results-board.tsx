@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
   ACTIVITY_LABELS,
+  AI_DATA_CASES,
   HALLUCINATION_TOKENS,
   PHISHING_CASES,
   TRAFFIC_CASES,
@@ -54,7 +55,9 @@ function ItemBreakdown({ activity, rows }: { activity: ActivityId; rows: Dashboa
     )
   }
   if (activity === 'phishing' || activity === 'traffic') {
-    const cases = activity === 'phishing' ? PHISHING_CASES.map((c) => ({ id: c.id, label: c.subject, answer: c.answer as string })) : TRAFFIC_CASES.map((c) => ({ id: c.id, label: c.text, answer: c.answer as string }))
+    const cases = activity === 'phishing'
+      ? PHISHING_CASES.map((c) => ({ id: c.id, label: c.subject, answer: c.answer as string, acceptableAnswers: [] as string[] }))
+      : TRAFFIC_CASES.map((c) => ({ id: c.id, label: c.text, answer: c.answer as string, acceptableAnswers: c.acceptableAnswers ?? [] }))
     return (
       <div className="flex flex-col gap-3">
         <p className="text-xs text-muted-foreground">Aciertos por caso</p>
@@ -62,7 +65,10 @@ function ItemBreakdown({ activity, rows }: { activity: ActivityId; rows: Dashboa
           <Bar
             key={c.id}
             label={c.label}
-            value={rows.filter((r) => (r.payload.answers as Record<string, string> | undefined)?.[c.id] === c.answer).length}
+            value={rows.filter((r) => {
+              const answer = (r.payload.answers as Record<string, string> | undefined)?.[c.id]
+              return answer === c.answer || c.acceptableAnswers.includes(answer ?? '')
+            }).length}
             max={n}
             tone="bg-success"
           />
@@ -76,6 +82,22 @@ function ItemBreakdown({ activity, rows }: { activity: ActivityId; rows: Dashboa
         <p className="text-xs text-muted-foreground">Errores detectados</p>
         {HALLUCINATION_TOKENS.filter((t) => t.isError).map((t) => (
           <Bar key={t.id} label={t.text} value={rows.filter((r) => (r.payload.found as string[] | undefined)?.includes(t.id)).length} max={n} tone="bg-success" />
+        ))}
+      </div>
+    )
+  }
+  if (activity === 'ai-data') {
+    return (
+      <div className="flex flex-col gap-3">
+        <p className="text-xs text-muted-foreground">Clasificaciones correctas por ejemplo</p>
+        {AI_DATA_CASES.map((item) => (
+          <Bar
+            key={item.id}
+            label={item.text}
+            value={rows.filter((r) => (r.payload.answers as Record<string, boolean> | undefined)?.[item.id] === item.shareable).length}
+            max={n}
+            tone="bg-success"
+          />
         ))}
       </div>
     )

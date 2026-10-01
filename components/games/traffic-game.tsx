@@ -30,7 +30,7 @@ export function TrafficGame() {
     const c = TRAFFIC_CASES.find((x) => x.id === id)!
     const chosen = answers[id]
     const showResult = Boolean(result && chosen)
-    const right = chosen === c.answer
+    const right = chosen === c.answer || Boolean(chosen && c.acceptableAnswers?.includes(chosen))
     return (
       <div
         draggable
