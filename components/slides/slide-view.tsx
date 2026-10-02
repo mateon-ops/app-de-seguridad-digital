@@ -116,7 +116,7 @@ function SlideBody({ index }: { index: number }) {
           <h2 className="text-4xl font-bold tracking-tight text-balance md:text-6xl">
             Seguridad Digital y <span className="text-primary">Uso Responsable de la IA</span>
           </h2>
-          <p className="rounded-full border border-accent/40 bg-accent px-4 py-1.5 font-mono text-base text-white font-bold">
+          <p className="rounded-full border border-accent bg-accent px-4 py-1.5 font-mono text-base text-white font-bold">
             Emprendimientos Seguros
           </p>
           <p className="max-w-xl text-lg font-medium leading-relaxed text-foreground text-pretty">
