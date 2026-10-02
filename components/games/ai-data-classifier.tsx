@@ -55,7 +55,7 @@ export function AiDataClassifier() {
                 aria-label={`${title}. Soltá una tarjeta acá o tocá para asignar la tarjeta seleccionada`}
               >
                 <Icon className={cn('size-6 shrink-0', tone === 'destructive' ? 'text-destructive' : 'text-success')} aria-hidden />
-                <span className="font-semibold">{title}</span>
+                <span className="text-lg font-bold">{title}</span>
               </button>
               <ul className="flex flex-col gap-2">
                 {items.map((item) => (
@@ -74,7 +74,7 @@ export function AiDataClassifier() {
                       )}
                     >
                       {complete && (item.shareable === shareable) && <Check className="size-4 shrink-0 text-success" aria-hidden />}
-                      <span>{item.text}</span>
+                      <span className="text-lg">{item.text}</span>
                     </button>
                   </li>
                 ))}
@@ -86,7 +86,7 @@ export function AiDataClassifier() {
 
       {remaining.length > 0 && (
         <section aria-label="Ejemplos por clasificar" className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold text-muted-foreground">Por clasificar ({remaining.length})</h3>
+          <h3 className="text-lg font-bold text-primary">Por clasificar ({remaining.length})</h3>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {remaining.map((item) => (
               <li key={item.id}>
@@ -97,7 +97,7 @@ export function AiDataClassifier() {
                   onClick={() => setSelectedId(item.id)}
                   aria-pressed={selectedId === item.id}
                   className={cn(
-                    'flex min-h-12 w-full cursor-grab items-center rounded-lg border border-border bg-card p-3 text-left hover:border-primary/50 active:cursor-grabbing',
+                    'flex min-h-12 w-full cursor-grab items-center rounded-lg border border-border bg-card p-3 text-left text-lg hover:border-primary/50 active:cursor-grabbing',
                     selectedId === item.id && 'ring-2 ring-primary',
                   )}
                 >
@@ -109,7 +109,7 @@ export function AiDataClassifier() {
         </section>
       )}
 
-      <p aria-live="polite" className="text-center text-sm text-muted-foreground">
+      <p aria-live="polite" className="text-center text-base font-semibold text-primary">
         {complete ? '¡Ya clasificaste los seis ejemplos!' : `${Object.keys(classification).length} de ${AI_DATA_CASES.length} clasificados`}
       </p>
 

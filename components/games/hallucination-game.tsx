@@ -33,7 +33,7 @@ export function HallucinationGame() {
       instructions={`La IA escribió esta respuesta con mucha seguridad... pero tiene datos ridículos. Tocá cada dato erróneo para marcarlo y escribí la corrección. Hay ${HALLUCINATION_ERROR_IDS.length} para cazar.`}
     >
       <div className="flex flex-col gap-3 rounded-2xl border border-border bg-background/60 p-5">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2 text-base font-semibold text-primary">
           <Bot className="size-4 text-accent" aria-hidden />
           <span className="font-mono">AsistenteIA dice:</span>
         </div>
@@ -72,7 +72,7 @@ export function HallucinationGame() {
         <ul className="grid gap-3 md:grid-cols-2">
           {markedTokens.map((t) => (
             <li key={t.id} className="animate-pop flex flex-col gap-2 rounded-xl border border-border bg-card p-3">
-              <label htmlFor={`fix-${t.id}`} className="text-sm">
+              <label htmlFor={`fix-${t.id}`} className="text-base font-semibold">
                 <span className="text-destructive line-through">{t.text}</span>
                 <span className="text-muted-foreground"> → ¿qué sería lo correcto?</span>
               </label>
@@ -83,7 +83,7 @@ export function HallucinationGame() {
                 placeholder="Escribí tu corrección"
                 className="rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
               />
-              {result && <p className="text-xs text-success">Pista: {t.correction}</p>}
+              {result && <p className="text-base font-semibold text-success">Pista: {t.correction}</p>}
             </li>
           ))}
         </ul>

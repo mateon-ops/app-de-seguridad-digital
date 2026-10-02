@@ -75,7 +75,7 @@ export function PhishingGame() {
                   <div className="flex flex-1 flex-col gap-5 p-5 md:p-8">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-xl font-bold text-balance md:text-2xl">{c.subject}</h3>
-                      <span className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground">Recibidos</span>
+                      <span className="rounded-md bg-muted px-2 py-0.5 text-sm font-semibold text-primary">Recibidos</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary">
@@ -84,17 +84,17 @@ export function PhishingGame() {
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-baseline gap-x-2">
                           <span className="font-bold text-foreground">{c.senderName ?? c.from}</span>
-                          <span className="break-all text-sm text-muted-foreground">&lt;{c.from}&gt;</span>
-                          <span className="ml-auto text-sm text-muted-foreground">10:42</span>
+                          <span className="break-all text-base text-muted-foreground">&lt;{c.from}&gt;</span>
+                          <span className="ml-auto text-base text-muted-foreground">10:42</span>
                         </div>
-                        <p className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <p className="flex items-center gap-1 text-base text-muted-foreground">
                           para mí <span aria-hidden="true">⌄</span>
                         </p>
                       </div>
                       <Star className="mt-1 size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
                     </div>
-                    <p className="max-w-3xl whitespace-pre-line text-base leading-7 text-foreground md:text-lg">{c.body}</p>
-                    <div className="mt-auto flex items-center gap-2 border-t border-border pt-4 text-sm text-muted-foreground">
+                    <p className="max-w-3xl whitespace-pre-line text-lg leading-7 text-foreground">{c.body}</p>
+                    <div className="mt-auto flex items-center gap-2 border-t border-border pt-4 text-base text-muted-foreground">
                       <Icon className="size-4" aria-hidden />
                       <span>{label}</span>
                     </div>
@@ -105,10 +105,10 @@ export function PhishingGame() {
                   <header className="flex flex-wrap items-center gap-2 text-base text-muted-foreground">
                     <Icon className="size-5" aria-hidden />
                     <span>{label}</span>
-                    <span className="ml-auto break-all text-sm md:text-base" title={c.from}>{c.from}</span>
+                    <span className="ml-auto break-all text-base" title={c.from}>{c.from}</span>
                   </header>
                   <h3 className="text-xl font-bold text-balance md:text-2xl">{c.subject}</h3>
-                  <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{c.body}</p>
+                  <p className="text-lg leading-relaxed text-foreground">{c.body}</p>
                 </div>
               )}
               <div className="mt-auto grid grid-cols-2 gap-3 border-t border-border bg-muted/30 p-4 md:px-8">

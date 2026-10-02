@@ -86,6 +86,21 @@
   body {
     @apply bg-background text-foreground font-sans;
   }
+  .student-stage {
+    --background: oklch(0.975 0.018 210);
+    --foreground: oklch(0.25 0.075 255);
+    --primary: oklch(0.48 0.19 250);
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.92 0.055 190);
+    --secondary-foreground: oklch(0.25 0.09 220);
+    --muted: oklch(0.92 0.04 205);
+    --muted-foreground: oklch(0.32 0.11 250);
+    --accent: oklch(0.52 0.16 55);
+    --accent-foreground: oklch(1 0 0);
+    --border: oklch(0.82 0.055 205);
+    --input: oklch(0.74 0.08 220);
+    --ring: oklch(0.48 0.19 250);
+  }
 }
 
 @layer utilities {

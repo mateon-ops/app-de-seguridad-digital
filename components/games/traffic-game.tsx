@@ -44,7 +44,7 @@ export function TrafficGame() {
           <GripVertical className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
           <p className="text-base font-medium">{c.text}</p>
         </div>
-        {showResult && <p className={cn('text-xs', right ? 'text-success' : 'text-destructive')}>{c.explanation}</p>}
+        {showResult && <p className={cn('text-base font-medium', right ? 'text-success' : 'text-destructive')}>{c.explanation}</p>}
       </div>
     )
   }
@@ -83,7 +83,7 @@ export function TrafficGame() {
             <div className="flex items-center gap-2">
               <span className={cn('size-4 rounded-full shadow-[0_0_12px_currentColor]', l.dot)} aria-hidden />
               <span className="text-lg font-bold">{l.label}</span>
-              <span className="text-sm text-muted-foreground">{l.hint}</span>
+              <span className="text-base font-medium text-muted-foreground">{l.hint}</span>
             </div>
             {TRAFFIC_CASES.filter((c) => answers[c.id] === l.id).map((c) => (
               <Card key={c.id} id={c.id} />

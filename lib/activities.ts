@@ -179,7 +179,7 @@ export function gradeActivity(activity: ActivityId, input: unknown): Graded | nu
     case 'worry': {
       const choice = WORRY_OPTIONS.find((o) => o.id === data.choice)
       if (!choice) return null
-      return { correct: 0, total: 0, payload: { choice: choice.id } }
+      return { correct: 1, total: 1, payload: { choice: choice.id } }
     }
     case 'password': {
       const pw = typeof data.password === 'string' ? data.password.slice(0, 64) : ''

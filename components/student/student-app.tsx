@@ -54,30 +54,24 @@ export function StudentApp() {
   const inGame = data.room.mode === 'game' && slide?.activity
 
   return (
-    <div className="flex min-h-dvh flex-col bg-grid">
-      <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-background/95 px-4 py-3 md:px-8">
+    <div className="student-stage flex h-dvh flex-col overflow-hidden bg-grid">
+      <header className="relative z-10 flex shrink-0 items-center gap-3 px-4 py-3 md:px-8">
         <span className="font-semibold text-primary">Sala {data.room.code}</span>
-        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Users className="size-3.5" aria-hidden />
-          {data.online} en línea
-        </span>
         <span className="ml-auto truncate text-base font-semibold">{data.me.nickname}</span>
         <Button variant="ghost" size="icon" onClick={leave} aria-label="Salir de la sala">
           <LogOut className="size-4" />
         </Button>
       </header>
 
-      <main className="flex w-full flex-1 flex-col gap-3 p-3 md:gap-4 md:p-6">
+      <main className="flex min-h-0 w-full flex-1 flex-col gap-3 overflow-hidden p-3 md:gap-4 md:p-6">
         <div className="flex items-center gap-2 text-base" aria-live="polite">
           {inGame ? (
             <span className="flex items-center gap-2 font-semibold text-accent">
               <Radio className="size-4 animate-pulse" aria-hidden />
-              ¡Tiempo de juego activado!
             </span>
           ) : (
             <span className="flex items-center gap-2 text-muted-foreground">
               <Presentation className="size-4" aria-hidden />
-              Mirando la presentación
             </span>
           )}
         </div>

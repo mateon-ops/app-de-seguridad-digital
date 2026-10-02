@@ -58,7 +58,7 @@ export function PasswordGame() {
       instructions="Esta contraseña es re fácil de adivinar. Modificala con mayúsculas, símbolos y números hasta que la barra se ponga verde."
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor="pw-input" className="text-sm font-medium text-muted-foreground">
+        <label htmlFor="pw-input" className="text-base font-semibold text-primary">
           Tu contraseña
         </label>
         <div className={cn('flex items-center gap-2 rounded-2xl border bg-background p-2 transition-shadow', strong ? 'glow-primary border-primary' : 'border-destructive/50')}>
@@ -82,7 +82,7 @@ export function PasswordGame() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-base font-semibold">
           <span className="text-muted-foreground">Fuerza</span>
           <span className={cn('font-mono font-bold', level.text)} aria-live="polite">
             {level.label}
@@ -118,12 +118,12 @@ export function PasswordGame() {
 
       <ul className="grid gap-2 sm:grid-cols-2">
         {(Object.keys(CHECK_LABELS) as (keyof typeof CHECK_LABELS)[]).map((k) => (
-          <li key={k} className={cn('flex items-center gap-2 text-sm', checks[k] ? 'text-success' : 'text-muted-foreground')}>
+          <li key={k} className={cn('flex items-center gap-2 text-base font-medium', checks[k] ? 'text-success' : 'text-muted-foreground')}>
             {checks[k] ? <Check className="size-4" aria-hidden /> : <X className="size-4" aria-hidden />}
             {CHECK_LABELS[k]}
           </li>
         ))}
-        <li className={cn('flex items-center gap-2 text-sm', pw.length >= 16 ? 'text-success' : 'text-muted-foreground')}>
+        <li className={cn('flex items-center gap-2 text-base font-medium', pw.length >= 16 ? 'text-success' : 'text-muted-foreground')}>
           {pw.length >= 16 ? <Check className="size-4" aria-hidden /> : <X className="size-4" aria-hidden />}
           Bonus: 16 caracteres o más
         </li>

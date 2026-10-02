@@ -49,8 +49,8 @@ function Tile({
       <span className={cn('flex size-11 items-center justify-center rounded-xl border', toneClass)}>
         <Icon className="size-5" aria-hidden />
       </span>
-      <h3 className="text-lg font-semibold text-balance">{title}</h3>
-      <p className="text-base leading-relaxed text-muted-foreground text-pretty">{text}</p>
+      <h3 className="text-xl font-bold text-balance">{title}</h3>
+      <p className="text-lg font-medium leading-relaxed text-foreground text-pretty">{text}</p>
     </div>
   )
 }
@@ -119,7 +119,7 @@ function SlideBody({ index }: { index: number }) {
           <p className="rounded-full border border-accent/40 bg-accent px-4 py-1.5 font-mono text-base text-white font-bold">
             Emprendimientos Seguros
           </p>
-          <p className="max-w-xl text-muted-foreground text-pretty">
+          <p className="max-w-xl text-lg font-medium leading-relaxed text-foreground text-pretty">
             Hoy vas a aprender a proteger tu negocio como un crack!: cuentas blindadas por contraseñas, IA bien usada y el dinero a salvo.
           </p>
         </div>
@@ -170,14 +170,14 @@ function SlideBody({ index }: { index: number }) {
                 <User className="size-5" aria-hidden />
                 <h3 className="font-semibold text-foreground">Cuenta personal</h3>
               </div>
-              <p className="text-base text-muted-foreground">Si te la roban: perdés fotos, chats y tu privacidad.</p>
+              <p className="text-lg font-medium text-foreground">Si te la roban: perdés fotos, chats y tu privacidad.</p>
             </div>
             <div className="flex flex-col gap-3 rounded-2xl border border-destructive/40 bg-destructive/10 p-5">
               <div className="flex items-center gap-2 text-destructive">
                 <Store className="size-5" aria-hidden />
                 <h3 className="font-semibold text-foreground">Cuenta comercial</h3>
               </div>
-              <p className="text-base text-muted-foreground">
+              <p className="text-lg font-medium text-foreground">
                 Si te la roban: pueden estafar a tus clientes en tu nombre, quedarse con tus ventas y arruinar tu reputación.
               </p>
             </div>
@@ -199,7 +199,7 @@ function SlideBody({ index }: { index: number }) {
     case 6:
       return (
         <div className="flex flex-col gap-4">
-          <p className="text-center text-muted-foreground text-pretty">
+          <p className="text-center text-lg font-medium text-foreground text-pretty">
             La IA a veces <span className="font-semibold text-destructive">alucina</span>: inventa datos con total seguridad. Usá la regla de los 3 pasos:
           </p>
           <ol className="grid gap-4 md:grid-cols-3">
@@ -265,15 +265,12 @@ export function SlideView({ index, compact = false }: { index: number; compact?:
     <article
       key={index}
       className={cn(
-        'animate-pop relative flex min-h-0 flex-1 flex-col justify-center gap-6 overflow-y-auto bg-card/70 bg-grid',
+        'animate-pop relative flex min-h-0 w-full flex-1 flex-col justify-center gap-6 overflow-y-auto overscroll-contain bg-card/70 bg-grid',
         compact ? 'p-5' : 'px-5 py-6 md:px-12 md:py-10',
       )}
       aria-labelledby={`slide-title-${index}`}
     >
       <header className="flex items-center justify-between gap-4">
-        <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-sm text-primary">
-          Diapositiva {slide.number}/{SLIDES.length}
-        </span>
         {slide.activity && (
           <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-sm text-accent">
             Actividad
@@ -281,7 +278,7 @@ export function SlideView({ index, compact = false }: { index: number; compact?:
         )}
       </header>
       {index !== 0 && (
-        <h2 id={`slide-title-${index}`} className="text-2xl font-bold tracking-tight text-balance md:text-4xl">
+        <h2 id={`slide-title-${index}`} className="text-3xl font-bold leading-tight text-balance md:text-5xl">
           {slide.title}
         </h2>
       )}

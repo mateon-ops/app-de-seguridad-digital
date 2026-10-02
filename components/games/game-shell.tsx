@@ -55,16 +55,16 @@ export function GameShell({
   children: React.ReactNode
 }) {
   return (
-    <section className="animate-pop flex flex-col gap-5 rounded-3xl border border-accent/40 bg-card/60 p-5 md:p-8" aria-labelledby="game-title">
+    <section className="animate-pop flex min-h-0 w-full flex-1 flex-col gap-5 overflow-y-auto overscroll-contain rounded-3xl border border-accent/40 bg-card/60 p-5 md:p-8" aria-labelledby="game-title">
       <header className="flex flex-col gap-2">
-        <span className="flex w-fit items-center gap-2 rounded-full bg-accent px-3 py-1 font-mono text-xs font-bold text-accent-foreground">
+        <span className="flex w-fit items-center gap-2 rounded-full bg-accent px-3 py-1 font-mono text-sm font-bold text-accent-foreground">
           <Gamepad2 className="size-3.5" aria-hidden />
           TIEMPO DE JUEGO
         </span>
-        <h2 id="game-title" className="text-2xl font-bold tracking-tight md:text-3xl">
+        <h2 id="game-title" className="text-3xl font-bold leading-tight md:text-4xl">
           {title}
         </h2>
-        <p className="text-muted-foreground text-pretty">{instructions}</p>
+        <p className="text-lg font-medium leading-relaxed text-foreground text-pretty">{instructions}</p>
       </header>
       {children}
     </section>
@@ -87,8 +87,8 @@ export function SubmitBar({
   label?: string
 }) {
   return (
-    <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
-      <div aria-live="polite" className="text-sm">
+    <div className="flex flex-col gap-3 border-t border-border pt-4 text-lg sm:flex-row sm:items-center sm:justify-between">
+      <div aria-live="polite" className="text-lg">
         {error && <p className="text-destructive">{error}</p>}
         {result && result.total > 0 && (
           <p className="animate-pop flex items-center gap-2 font-semibold text-success">
@@ -98,7 +98,7 @@ export function SubmitBar({
         )}
         {result && result.total === 0 && <p className="animate-pop font-semibold text-success">¡Voto enviado!</p>}
       </div>
-      <Button size="lg" onClick={onSubmit} disabled={pending || disabled} className="font-semibold">
+      <Button size="lg" onClick={onSubmit} disabled={pending || disabled} className="font-semibold text-lg">
         {pending && <Loader2 className="size-4 animate-spin" aria-hidden />}
         {result ? 'Volver a enviar' : label}
       </Button>

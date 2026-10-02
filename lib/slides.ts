@@ -18,7 +18,7 @@ export const SLIDES: Slide[] = [
   { number: 8, short: 'Cuentas de dinero', title: 'Cuidados al vincular cuentas de dinero', activity: 'traffic' },
   { number: 9, short: '7 reglas de oro', title: 'Las 7 reglas de oro' },
   { number: 10, short: 'Datos e IA', title: '¿Qué datos compartir con la IA?', activity: 'ai-data' },
-  { number: 11, short: 'Cierre', title: 'Cierre y reflexión final' },
+  { number: 11, short: 'Cierre', title: '' },
 ]
 
 export const GOLDEN_RULES = [
